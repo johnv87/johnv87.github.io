@@ -5,6 +5,7 @@
 /.pnp
 /.idea
 .pnp.js
+prettier.config.js
 
 # testing
 /coverage

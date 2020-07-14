@@ -1,0 +1,247 @@
+$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default
+$black-92: rgba(0, 0, 0, 0.92)
+$black-80: rgba(0, 0, 0, 0.8)
+$black-13: rgba(19,19,19,1)
+$black-font: #1D1D1F
+$blue-link: #06c
+$grey-6: #666
+$grey-link: #515154
+$grey-link-hover: #1d1d1f
+$white-text: #f5f5f7
+$dark: #343A40
+$dark2: #3e444a
+$white: #fff
+$white-25: rgba(255,255,255,.25)
+$white-50: rgba(255,255,255,.5)
+$white-65: rgba(255,255,255,.65)
+$white-75: rgba(255,255,255,.75)
+$white-85: rgba(255,255,255,.85)
+$white-text: #f5f5f7
+$white-fa: #fafafa
+$white-f2: #f2f2f2
+$danger: #dc3545
+$success: #28a745
+
+//Linear Gradients
+$steel-gradient: linear-gradient(to left, #E6E5E0, #F0EFEA)
+$steel-gradient2: linear-gradient(to left, #F0F1F3, #9E9FA1)
+$red-gradient: linear-gradient(to left, #F6828B, #95161F)
+$yellow-gradient: linear-gradient(to left, #FCE37E, #FFEFA4)
+$cyan-gradient: linear-gradient(to left, #D9FBED, #ABD6BB)
+$purple-gradient: linear-gradient(to left, #C1B9CE, #D4CFE3)
+$dark-gradient: linear-gradient(to left, #1D1D1F, #343A40)
+
+@mixin mobile-375
+  @media screen and (min-width: 375px)
+    @content
+
+@mixin mobile-425
+  @media screen and (min-width: 425px)
+    @content
+
+@mixin tablet-768
+  @media screen and (min-width: 768px)
+    @content
+
+@mixin laptop-1024
+  @media screen and (min-width: 1024px)
+    @content
+
+*, ::before, ::after
+  box-sizing: border-box
+  margin: 0
+html
+  position: relative
+  scroll-behavior: smooth
+
+body
+  position: relative
+  margin: 0 auto
+  //font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', sans-serif
+  font-family: $font-family-sans-serif
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  background: $white-f2
+  transition: background 300ms ease-in-out
+
+  &.dark
+    color: $white-text
+    background: $dark
+    #content
+      background-color: $dark2
+
+code
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace
+
+header
+  position: fixed
+  top: 0
+  left: 0
+  max-height: 48px
+  height: 100%
+  width: 100%
+  z-index: 1030
+
+  .navbar
+    position: relative
+    align-items: center
+    justify-content: center
+    width: 100%
+    background: $black-80 !important
+    backdrop-filter: saturate(180%) blur(20px)
+    overflow: hidden
+    padding: .25rem 0
+    transition: background 750ms ease-in-out
+
+    &.active
+      //transition: background 250ms ease-in-out
+      transition: all .36s cubic-bezier(0.32, 0.08, 0.24, 1),height .56s cubic-bezier(0.52, 0.16, 0.24, 1)
+      background: $black-92 !important
+
+    >.container-fluid
+      align-items: center
+      justify-content: center
+      @include tablet-768
+        justify-content: space-between
+
+      .navbar-brand
+        margin: 0
+        transition: color 250ms ease-in-out
+
+      //NAVBAR TOGGLER
+      #hamburger
+        position: absolute
+        top: 15px
+        right: 1rem
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: space-evenly
+        height: fit-content
+        width: 24px
+        border-radius: 4px
+        cursor: pointer
+        z-index: 1031
+        @include tablet-768
+          display: none
+
+        .hamburger-line
+          position: relative
+          margin: 2.5px 0
+          height: 1px
+          width: 20px
+          background: $white-75
+          transition: background 250ms ease-in
+          &.active
+            background: $white-50
+
+
+      //NAVBAR MENU
+      .navbar-nav
+        position: relative
+        display: flex
+        flex-direction: column
+        align-items: center
+        height: 0
+        width: 100%
+        visibility: hidden
+        overflow: no-content
+        transition: all .36s cubic-bezier(0.32, 0.08, 0.24, 1),height .56s cubic-bezier(0.52, 0.16, 0.24, 1)
+        @include tablet-768
+          height: fit-content
+          flex-direction: row
+          width: fit-content
+          visibility: visible
+        &.active
+          height: 120px
+          padding: 0 24px
+          visibility: visible
+
+          .nav-link
+            opacity: 1
+
+        .nav-link
+          color: $white-65
+          font-weight: 300
+          opacity: 0
+          border-bottom: 1px solid $grey-6
+          width: 100%
+          transition: opacity .3091s cubic-bezier(0.32, 0.08, 0.24, 1) .03s, transform .3455s cubic-bezier(0.32, 0.08, 0.24, 1) .02s
+          @include tablet-768
+            opacity: 1
+            border-bottom: none
+            transition: color .3091s cubic-bezier(0.32, 0.08, 0.24, 1) .03s, transform .3455s cubic-bezier(0.32, 0.08, 0.24, 1) .02s
+
+            &:first-of-type
+              margin-right: 8px
+          &:hover
+            color: $white-85
+          &.active
+            color: $white
+            &:hover
+              color: $white
+
+//CONTENT CONTAINER
+#content
+  padding-top: 64px
+  min-height: 150vh
+  background-color: $white
+  transition: background 300ms ease-in-out
+
+//THEME SWITCHER
+.form-switch
+  display: flex
+  margin-top: 8px
+
+  @include tablet-768
+    margin-top: 0
+    margin-left: 1rem
+    margin-right: 0
+    >label
+      display: none
+      width: 80px
+
+  //INPUT CHECKBOX AND SLIDER
+  >input
+    position: relative
+    display: flex
+    align-items: center
+    cursor: pointer
+    background-size: 1.125rem !important
+    background-image: url("./img/x-circle-fill.svg") !important
+    background-color: $danger
+    width: 32px !important
+    border-color: transparent !important
+    @include tablet-768
+      height: fit-content
+      width: 47px !important
+    &:focus
+      box-shadow: none
+    &:checked
+      background-image: url("./img/check-fill.svg") !important
+      background-color: $success
+      &::after
+        left: 2px
+        color: $white
+        @include tablet-768
+          left: 3px
+    &::after
+      display: none
+      content: 'dark'
+      position: relative
+      left: 20px
+      height: 20px
+      width: 43px
+      color: $black-font
+      font-size: .75rem
+      line-height: 1.25rem
+      transition: left 150ms ease-in-out
+      @include tablet-768
+        display: block
+        line-height: 1.125rem
+
+  >label
+    font-weight: 300
+    padding-left: .25rem
+    cursor: pointer
+
